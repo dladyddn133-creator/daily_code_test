@@ -1,43 +1,49 @@
-#include <stdio.h>
-#include<stdlib.h>
-#include<string.h>
-//두 자연수 A와 B가 주어진다. 이때, A+B, A-B, A*B, A/B(몫), A%B(나머지)를 출력하는 프로그램을 작성하시오. 
+#include<stdio.h>
+#define SQR(x) ((x)*(x))
 
+void sort_triangle(int*arr);
+void print_right_triangle(int*arr);
 
 int main(void)
-{
-    int triple[3];
-
+{ 
+    int input_triangle[3];
     while(1)
-    {    
-        scanf("%d",&triple[0]);
-        for(int i=1;i<3;i++)
+    {
+        for(int i=0;i<3;i++)
         {
-            scanf("%d",&triple[i]);
-            if(triple[i]>triple[0])
-            {
-                int temp = triple[0];
-                triple[0]=triple[i];
-                triple[i]=temp;
-            }
+            scanf("%d",&input_triangle[i]);
         }
-        if(triple[0]==0 && triple[1]==0 && triple[2]==0){
+        if(input_triangle[0]==0&&input_triangle[1]==0&&input_triangle[2]==0)
+        {
             break;
         }
-        if(triple[0]>=(triple[1]+triple[2]))
+        sort_triangle(input_triangle);
+        print_right_triangle(input_triangle);
+    }
+
+    return 0;
+}
+void sort_triangle(int*arr)
+{
+    for(int i=1;i<3;i++)
+    {
+        if(arr[i]>arr[0])
         {
-            printf("wrong\n");
-        }
-        else if((triple[0]*triple[0])!=((triple[1]*triple[1])+(triple[2]*triple[2])))
-        {
-            printf("wrong\n");
-        }
-        else
-        {
-            printf("right\n");
+            int temp=arr[0];
+            arr[0]=arr[i];
+            arr[i]=temp;
         }
     }
 
-
-    return 0;
+}
+void print_right_triangle(int*arr)
+{
+    if(SQR(arr[0]) == SQR(arr[1])+SQR(arr[2]))
+    {
+        printf("right\n");
+    }
+    else
+    {
+        printf("wrong\n");
+    }
 }
