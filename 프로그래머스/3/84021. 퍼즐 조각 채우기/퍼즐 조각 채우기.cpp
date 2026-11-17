@@ -35,7 +35,6 @@ Shape shape_bfs(vector<vector<int>>& game_board)
     vector<int> dy={0, 0, 1, -1};
     
     queue<pair<int, int>> next;
-    // vector<vector<bool>> visited(game_board.size(), vector<bool>(game_board[0].size(), false));
     
     for(int i=0;i<h;i++)
     {
